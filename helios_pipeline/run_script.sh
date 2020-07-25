@@ -31,7 +31,7 @@ time DPPP /home/mkuiack1/A12_pipeline/parsets/Subtract.parset  msin=$MSFILE  \
 # Image final data product: SUBTRACTED_DATA
 time wsclean -size 3300 3300 -scale 0.05 -j 23 -parallel-gridding 6 -parallel-reordering 6 \
 	-no-update-model-required -pol I -weight briggs 0.0 -name A12_test -niter 1000000 \
-	-fits-mask /home/mkuiack1/A12_pipeline/o3300_m1100.fits -reuse-primary-beam -multiscale \
+	-fits-mask /home/mkuiack1/A12_pipeline/masks/o3300_m1100.fits -reuse-primary-beam -multiscale \
 	-multiscale-scales 0,4,8,16,32,64 -auto-mask 3  -auto-threshold 0.3 -local-rms -mgain 0.8 -fit-beam \
 	-clean-border 21 -apply-primary-beam -join-channels  -channels-out 3 -data-column SUBTRACTED_DATA $MSFILE
 
