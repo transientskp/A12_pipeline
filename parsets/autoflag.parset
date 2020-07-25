@@ -1,0 +1,13 @@
+# Flag all antenna auto-correlations
+
+msin.datacolumn=FLAG_DATA
+msout.datacolumn=FLAG_DATA
+msout=.
+
+steps=[preflagger,count]
+
+preflagger.type=preflagger
+
+preflagger.mode=set
+preflagger.baseline=0~575&&&
+#preflagger.corrtype=auto

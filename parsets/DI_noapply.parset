@@ -1,0 +1,21 @@
+### Gain Calibration without applycal ###
+
+msin.datacolumn=FLAG_DATA
+msout=.
+
+steps=[cal]
+
+cal.type=calibrate
+cal.caltype=fulljones
+
+cal.sources=[CasA_4_patch,CygAGG]
+cal.solint=4
+cal.nchan=1
+cal.maxiter=500
+cal.tolerance=0.00001
+cal.propagatesolutions=true
+cal.detectstalling=true
+cal.usebeammodel=true
+cal.onebeamperpatch=false
+cal.usechannelfreq=true
+cal.uvlambdamin=20

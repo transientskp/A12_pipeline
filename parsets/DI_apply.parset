@@ -1,0 +1,10 @@
+### DI applycal##
+
+msin.datacolumn=FLAG_DATA
+msout.datacolumn=DI_CORRECTED_DATA
+msout=.
+
+steps=[apply]
+
+apply.type=applycal
+apply.correction=fulljones
