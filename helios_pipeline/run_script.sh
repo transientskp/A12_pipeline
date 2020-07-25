@@ -14,8 +14,8 @@ time DPPP /home/mkuiack1/A12_pipeline/parsets/DI_noapply.parset  msin=$MSFILE  \
 
 # Apply DI Calibration solution 
 time DPPP /home/mkuiack1/A12_pipeline/parsets/DI_apply.parset  msin=$MSFILE  msin.datacolumn=FLAG_DATA \
-	applycal.sourcedb=/home/mkuiack1/A12_pipeline/skymodel/Ateam_LBA_CC.sourcedb  \
-	applycal.parmdb=$MSFILE/instrument.h5 msout.datacolumn=DI_CORRECTED_DATA | tee dysco-applyDI.log
+	apply.sourcedb=/home/mkuiack1/A12_pipeline/skymodel/Ateam_LBA_CC.sourcedb  \
+	apply.parmdb=$MSFILE/instrument.h5 msout.datacolumn=DI_CORRECTED_DATA | tee dysco-applyDI.log
 
 # Calculate and apply DDE solution
 time DPPP /home/mkuiack1/A12_pipeline/parsets/DDE_cal.parset  msin=$MSFILE  \
@@ -25,7 +25,7 @@ time DPPP /home/mkuiack1/A12_pipeline/parsets/DDE_cal.parset  msin=$MSFILE  \
 # Subtract A-team
 time DPPP /home/mkuiack1/A12_pipeline/parsets/Subtract.parset  msin=$MSFILE  \
 	sub.sourcedb=/home/mkuiack1/A12_pipeline/skymodel/Ateam_LBA_CC.sourcedb  \
-	sub.applycal.h5parm=$MSFILE/dde_instrument.h5 msin.datacolumn=DDE_CORRECTED_DATA \
+	sub.applycal.parmdb=$MSFILE/dde_instrument.h5 msin.datacolumn=DDE_CORRECTED_DATA \
 	msout.datacolumn=SUBTRACTED_DATA | tee dysco-sub.log
 
 # Image final data product: SUBTRACTED_DATA
