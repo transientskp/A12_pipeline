@@ -1,0 +1,23 @@
+### DD Gain Calibration##
+
+msin.datacolumn=DI_CORRECTED_DATA
+msout.datacolumn=DDE_CORRECTED_DATA
+msout=.
+
+steps=[cal]
+
+cal.type=ddecal
+cal.mode=fulljones
+#cal.sourcedb=/home/mkuiack1/A12_pipeline/skymodel/Ateam_LBA_CC.sourcedb
+#cal.h5parm=${ddpdb}
+cal.directions=[[CasA_4_patch],[CygAGG]]
+cal.solint=4
+cal.nchan=1
+cal.maxiter=300
+cal.tolerance=0.00001
+cal.propagatesolutions=true
+cal.propagateconvergedonly=true
+cal.usebeammodel=true
+cal.onebeamperpatch=false
+cal.usechannelfreq=true
+cal.uvlambdamin=60

@@ -1,0 +1,10 @@
+LoSoTo.Steps = [plot]
+LoSoTo.operation = PLOT
+LoSoTo.Soltab = sol000/amplitude000
+LoSoTo.axesInPlot = [time]
+LoSoTo.figSize = [0,0]
+LoSoTo.prefix = "FindMe"
+ 
+#LoSoTo.pol = [XX,YY]
+
+

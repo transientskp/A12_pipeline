@@ -1,0 +1,17 @@
+### Subtract A-team sources ##
+
+msin.datacolumn=DI_CORRECTED_DATA
+msout.datacolumn=SUBTRACTED_DATA
+msout=.
+
+steps=[sub]
+
+sub.type=h5parmpredict
+#sub.sourcedb=/home/mkuiack1/A12_pipeline/skymodel/Ateam_LBA_CC.sourcedb
+#sub.applycal.parmdb=${ddpdb}
+sub.applycal.correction=fulljones
+sub.directions=[[CasA_4_patch],[CygAGG]]
+sub.usebeammodel=true
+sub.onebeamperpatch=false
+sub.usechannelfreq=true
+sub.operation=subtract

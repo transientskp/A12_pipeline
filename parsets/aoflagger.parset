@@ -1,0 +1,10 @@
+msin.datacolumn=DATA
+msout.datacolumn=DATA
+#msin.starttime=20
+#msin.steps=1
+msout=.
+
+steps=[aoflagger,count]
+
+aoflagger.type=aoflagger
+count.type=count

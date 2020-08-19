@@ -1,0 +1,14 @@
+## Flag bad antenna cross correlations
+
+msin.datacolumn=DATA
+msout.datacolumn=FLAG_DATA
+msout=.
+
+steps=[preflagger,count]
+
+preflagger.type=preflagger
+
+#antflg.baseline=
+preflagger.mode=set
+preflagger.baseline=20,147,159,182,191,231,316,324,326,329,341,366,380,381,384,392,425,428,437,474,479,491,504,505,510,514,520,532,537,551,554,561,570,571,92,167,286,291,298,346,552
+#preflagger.baseline=0~575&&&
