@@ -1,0 +1,13 @@
+## Flag again after baseline outliers are removed
+
+msin.datacolumn=FLAG_DATA
+msout.datacolumn=FLAG_DATA
+msout=.
+
+steps=[aoflag,count]
+
+aoflag.type=aoflagger
+
+aoflag.strategy=LBAdefault
+aoflag.keepstatistics-True
+
