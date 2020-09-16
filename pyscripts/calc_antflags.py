@@ -14,27 +14,49 @@ badstations = np.array([], dtype="int")
 for stat_name in ["/opt/Data/mkuiack1/{0}-{1}/parsets/{0}-{1}-AOQ_STD.tsv".format(SB,OBS),  
                   "/opt/Data/mkuiack1/{0}-{1}/parsets/{0}-{1}-AOQ_SumP2.tsv".format(SB,OBS)]:
 
+
     aqdf = pd.read_csv(stat_name, delimiter="\t")
 
     sum_A2 = aqdf.groupby("ANTENNA2").sum()
     sum_A1 = aqdf.groupby("ANTENNA1").sum()
     tot_sum = sum_A1+ sum_A2
+    
 
-    # for key in tot_sum.keys()[2:]:
-    for key in tot_sum.keys()[4:8]:
+    for key in [4,6,8]:
 
-#         outliers = np.abs(tot_sum[key] - np.mean(tot_sum[key])) > 1.*np.std(tot_sum[key])
-        outliers = np.abs(tot_sum[key] - np.mean(tot_sum[key])) > 1.2*mad(tot_sum[key])
+        if tot_sum.keys()[key] == 'SumP2_POL3_I':
+            continue 
 
-        badstations = np.append(badstations, tot_sum[key][outliers].index)
-        print stat_name, key, ":", len(tot_sum[key][outliers])
+        check_sum = np.append(tot_sum[tot_sum.keys()[key]].values, 
+                            tot_sum[tot_sum.keys()[key+1]].values)
 
-all_badstations = np.unique(badstations)
 
+        all_outliers = np.array([])
+        
+        for station in np.arange(1,13):
+
+                
+                station_index = np.append(np.arange(0,48)+48*(station-1),
+                                          576+np.arange(0,48)+48*(station-1))
+                
+                
+                outliers = np.array(np.abs(check_sum[station_index] \
+                                             - np.median(check_sum[station_index])) \
+                                      > 3*mad(check_sum[station_index]), dtype=bool)
+                
+                badstations = np.append(badstations,
+                                        np.array(range(0,576)*2)[station_index][outliers])
+
+
+ant_num, count  = np.unique(badstations, return_counts=True)
+all_badstations = ant_num[count > 2]
+#badstations = np.append(badstations, np.array([497,499], dtype=int))
+#all_badstations = np.unique(badstations)
 
 # Block out stations
-all_badstations = np.append(all_badstations, 
-                     np.array(np.linspace(0,48,49,dtype=int), dtype=str))
+for station in [4]:
+        all_badstations = np.append(all_badstations, 
+                                np.linspace(0,48,48,dtype=int)+48*(station-1))
 all_badstations = np.unique(all_badstations)
 
 
