@@ -1,12 +1,5 @@
 #!/bin/bash
 
-#SBATCH -N 1
-#SBATCH --ntasks-per-node 1
-#SBATCH --cpus-per-task 12
-#SBATCH --mem 20G
-#SBATCH --time 12:00:00
-
-
 function clean_up {
   echo "### Running Clean_up ###"
   # - delete temporary files from the compute-node, before copying
@@ -14,6 +7,7 @@ function clean_up {
   rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE".ms"
   rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE
   # - exit the script
+  date
   exit
 }
 
@@ -40,6 +34,8 @@ SLICE=${START:0:10}"T"${START:11:8}"-"${END:11:8}
 INPUT=$OBS"/"$SB"-"$OBS"-lba_*.vis"
 
 mkdir /hddstore/mkuiack1
+mkdir "/hddstore/mkuiack1/"$SB"-"$SLICE
+cd  "/hddstore/mkuiack1/"$SB"-"$SLICE
 
 # Load LOFAR cookbook Simage
 singularity exec -B /hddstore/mkuiack1/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/opt/Archive/  \
@@ -57,16 +53,16 @@ singularity exec -B /hddstore/:/opt/Data  \
 #rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE"/Ateam_LBA_CC.sourcedb"
 
 # send output to Archive
-rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE".ms" \
-	"/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"
+#rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE".ms" \
+#	"/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"
 
 
 rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE \
         "/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"
 
 # send output to struis
-rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE \
-        "mkuiack@struis.science.uva.nl:/scratch/mkuiack/lookhere/"
+#rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE \
+#        "mkuiack@struis.science.uva.nl:/scratch/mkuiack/lookhere/"
 
 
 # Clean up workspace 

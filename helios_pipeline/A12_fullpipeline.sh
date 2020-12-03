@@ -6,7 +6,6 @@
 #SBATCH --mem 50G
 #SBATCH --time 6:00:00
 
-
 function clean_up {
   echo "### Running Clean_up ###"
   # - delete temporary files from the compute-node, before copying
@@ -16,7 +15,6 @@ function clean_up {
   # - exit the script
   exit
 }
-
 
 # call "clean_up" function when this script exits, it is run even if SLURM cancels the job 
 trap 'clean_up' EXIT

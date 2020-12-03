@@ -9,14 +9,19 @@
 SB=$1
 OBS=$2
 
-MSFILE="/opt/Data/mkuiack1/"$SB"-"$OBS".ms"
-
 START=$3
 END=$4
+
+SLICE=${START:0:10}"T"${START:11:8}"-"${END:11:8}
+
+MSFILE="/opt/Data/mkuiack1/"$SB"-"$SLICE".ms"
 
 source /opt/lofarsoft/lofarinit.sh
 
 ls -d $MSFILE
+
+START=0
+END=95
 
 # interval start
 array=(`seq $START $END`)
@@ -25,14 +30,24 @@ array2=(`seq $((START+1)) $((END+1))`)
 # filename number string 
 array3=(`seq -f "%05g" $START $END`)
 
+# image all Stokes, and clean:
+#for ((i=0;i<${#array[@]};++i));
+#	do wsclean -size 2300 2300  -j 12 -scale 0.05 -update-model-required  -pol I,U,V,Q \
+#		-fits-mask /home/mkuiack1/A12_pipeline/masks/o2300_m1050.fits -weight briggs 0.0 -interval "${array[i]}" "${array2[i]}" \
+#		-name "/opt/Data/mkuiack1/"$SB"-"$OBS"-pols/"${array3[i]}"_"$SB"-"$OBS -niter 100000 -multiscale -multiscale-scales 0,4,8,16,32,64 \
+#		-channels-out 3 -auto-mask 3 -auto-threshold 0.3 -local-rms -mgain 0.8 -fit-beam \
+#		-data-column SUBTRACTED_DATA $MSFILE
+#done
 
+# image all Stokes, and clean:
 for ((i=0;i<${#array[@]};++i));
-	do wsclean -size 2300 2300  -j 12 -scale 0.05 -update-model-required  -pol I,U,V,Q  \
-		-fits-mask /home/mkuiack1/A12_pipeline/masks/o2300_m1050.fits -weight briggs 0.0 -interval "${array[i]}" "${array2[i]}" \
-		-name "/opt/Data/mkuiack1/"$SB"-"$OBS"-pols/UVmin_"${array3[i]}"_"$SB"-"$OBS -niter 100000 -multiscale -multiscale-scales 0,4,8,16,32,64 \
-		-channels-out 5 -auto-mask 3 -auto-threshold 0.3 -local-rms -mgain 0.8 -fit-beam \
-		-data-column SUBTRACTED_DATA $MSFILE
+       do wsclean -size 2300 2300  -j 12 -scale 0.05 -update-model-required  -pol I,U,V,Q \
+               -weight briggs 0.0 -interval "${array[i]}" "${array2[i]}" \
+               -name "/opt/Data/mkuiack1/"$SB"-"$SLICE"-pols/"${array3[i]}"_"$SB"-"$SLICE -niter 0 \
+               -channels-out 3 -auto-mask 3 -auto-threshold 0.3 -local-rms -mgain 0.8 -fit-beam \
+               -data-column SUBTRACTED_DATA $MSFILE
 done
+
 
 
 #for ((i=0;i<${#array[@]};++i)); \
