@@ -16,13 +16,13 @@ import glob
 
 obs=sys.argv[1]
 basedir = "/opt/Data"
-outdir = "$HOME"
+outdir = "/home/mkuiack1"
 
 visfile = glob.glob(basedir+'/{}/SB*-{}-lba_*.vis'.format(obs,obs))
 
 print "Found {} visibilities.".format(len(visfile))
 print "Parsing", visfile[0]
-process = subprocess.Popen(['$HOME/bin/afedit', 
+process = subprocess.Popen(['/home/mkuiack1/bin/afedit', 
                             '-show-lst', 
                             visfile[0]],
                      stdout=subprocess.PIPE, 
@@ -30,7 +30,7 @@ process = subprocess.Popen(['$HOME/bin/afedit',
 stdout, stderr = process.communicate()
 
 if len(stdout) > 1:
-    start, end =  pd.to_datetime(stdout[26:73].split(" - "))
+    start, end =  pd.to_datetime(stdout[26:73].split(" - ") )
 else:
     print "No times to parse"
     sys.exit()
