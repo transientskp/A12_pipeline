@@ -18,7 +18,7 @@ obs=sys.argv[1]
 
 visfile = glob.glob('/opt/Archive/{}/SB*-{}-lba_outer.vis'.format(obs,obs))
 
-process = subprocess.Popen(['/home/mkuiack1/bin/afedit', 
+process = subprocess.Popen(['$HOME/bin/afedit', 
                             '-show-lst', 
                             visfile[0]],
                      stdout=subprocess.PIPE, 
