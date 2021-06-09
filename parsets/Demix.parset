@@ -1,0 +1,9 @@
+steps = [demix]
+
+demix.type = demixer
+
+demix.subtractsources=[CygA, CasA, TauA, VirA]
+demix.ignoretarget=true
+demix.ateam.threshold=50
+demix.target.threshold=200
+demix.subtract=true

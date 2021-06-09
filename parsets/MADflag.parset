@@ -1,0 +1,16 @@
+## Flag again after baseline outliers are removed
+
+msin.datacolumn=FLAG_DATA
+msout.datacolumn=FLAG_DATA
+msout=.
+
+steps=[madflag]
+
+madflag.type=madflag
+
+madflag.threshold=1
+madflag.timewindow=1
+madflag.freqwindow=1
+#madflag.correlations=[0,3] 
+#madflag.keepstatistics-True
+#madflag.autocorr=True

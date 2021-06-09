@@ -8,7 +8,7 @@ steps=[cal]
 
 cal.type=ddecal
 cal.mode=fulljones
-#cal.sourcedb=/home/mkuiack1/A12_pipeline/skymodel/Ateam_LBA_CC.sourcedb
+#cal.sourcedb=$HOME/A12_pipeline/skymodel/Ateam_LBA_CC.sourcedb
 #cal.h5parm=${ddpdb}
 cal.directions=[[CasA_4_patch],[CygAGG]]
 cal.solint=1
