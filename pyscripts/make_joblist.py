@@ -15,9 +15,13 @@ import glob
 
 
 obs=sys.argv[1]
+basedir = "/opt/Data"
+outdir = "/home/mkuiack1"
 
-visfile = glob.glob('/opt/Archive/{}/SB*-{}-lba_outer.vis'.format(obs,obs))
+visfile = glob.glob(basedir+'/{}/SB*-{}-lba_*.vis'.format(obs,obs))
 
+print "Found {} visibilities.".format(len(visfile))
+print "Parsing", visfile[0]
 process = subprocess.Popen(['/home/mkuiack1/bin/afedit', 
                             '-show-lst', 
                             visfile[0]],
@@ -31,12 +35,13 @@ else:
     print "No times to parse"
     sys.exit()
 
+print "Obs range", start, "to", end
 
 SLICES = pd.date_range(start.round("1s")+pd.Timedelta(seconds=1), 
               end.round("1s")+pd.Timedelta(seconds=1), freq="3min")
 
 SUBBANDS = [os.path.basename(x).split("-")[0] 
-            for x in glob.glob("/opt/Archive/{}/SB*vis".format(obs))]
+            for x in glob.glob(basedir+"/{}/SB*vis".format(obs))]
 
 OBS_JOBS = pd.DataFrame([])
 
@@ -48,6 +53,10 @@ for _slice in range(len(SLICES)-1):
                                                       (SLICES[_slice+1]+pd.Timedelta(seconds=10))
                                                       .strftime("%Y-%m-%dT%H:%M:%S")]).T])
 
-OBS_JOBS.to_csv("$HOME/{}_JOBS.txt".format(obs), index=False, header=False, sep=" ")
+print len(OBS_JOBS), "total jobs."
 
+OBS_JOBS.to_csv(outdir+"/{}_JOBS.txt".format(obs), index=False, header=False, sep=" ")
+
+print outdir+"/{}_JOBS.txt".format(obs)
+print "Done."
 sys.exit()
