@@ -33,7 +33,7 @@ array3=(`seq -f "%05g" $START $END`)
 # image all Stokes, and clean:
 #for ((i=0;i<${#array[@]};++i));
 #	do wsclean -size 2300 2300  -j 12 -scale 0.05 -update-model-required  -pol I,U,V,Q \
-#		-fits-mask /home/mkuiack1/A12_pipeline/masks/o2300_m1050.fits -weight briggs 0.0 -interval "${array[i]}" "${array2[i]}" \
+#		-fits-mask $HOME/A12_pipeline/masks/o2300_m1050.fits -weight briggs 0.0 -interval "${array[i]}" "${array2[i]}" \
 #		-name "/opt/Data/mkuiack1/"$SB"-"$OBS"-pols/"${array3[i]}"_"$SB"-"$OBS -niter 100000 -multiscale -multiscale-scales 0,4,8,16,32,64 \
 #		-channels-out 3 -auto-mask 3 -auto-threshold 0.3 -local-rms -mgain 0.8 -fit-beam \
 #		-data-column SUBTRACTED_DATA $MSFILE
@@ -54,7 +54,7 @@ done
 #               do time wsclean -size 2300 2300 -scale 0.05 -j  23  \
 #                -interval "${array[i]}" "${array2[i]}" -no-update-model-required -pol I,U,V,Q -weight briggs 0.0 \
 #                -name "/opt/Data/mkuiack1/"$SB"-"$OBS"-pols/"${array3[i]}"_"$SB"-"$OBS -niter 1000000 -no-dirty \
-#                --fits-mask /home/mkuiack1/A12_pipeline/masks/o3300_m1100.fits \
+#                --fits-mask $HOME/A12_pipeline/masks/o3300_m1100.fits \
 #                -local-rms -mgain 0.8  -fit-beam -apply-primary-beam  -reuse-primary-beam \
 #                -multiscale-scales 0,4,8,16,32,64 -auto-mask 3  -auto-threshold 0.3 -local-rms -mgain 0.8 -fit-beam  \
 #                -channels-out 5 -data-column SUBTRACTED_DATA $MSFILE;
@@ -65,7 +65,7 @@ done
 #	do time wsclean -size 2300 2300 -scale 0.05 -j  23  \
 #                -interval "${array[i]}" "${array2[i]}" -no-update-model-required -pol I,U,V,Q -weight briggs 0.0 \
 #                -name "/opt/Data/imgs/"${array3[i]}"_"$SB"-"$OBS -niter 1000000 -no-dirty \
-#                --fits-mask /home/mkuiack1/A12_pipeline/masks/o2300_m1050.fits -minuv-l 10 \
+#                --fits-mask $HOME/A12_pipeline/masks/o2300_m1050.fits -minuv-l 10 \
 #                -local-rms -mgain 0.8  -fit-beam -apply-primary-beam  -reuse-primary-beam \
 #                -multiscale-scales 0,4,8,16,32,64 -auto-mask 3  -auto-threshold 0.3 -local-rms -mgain 0.8 -fit-beam  \
 #                -channels-out 5 -data-column SUBTRACTED_DATA $MSFILE;

@@ -21,7 +21,7 @@ source $HOME/env/bin/activate
 
 SOURCEDB='Ateam_LBA_CC.sourcedb'
 
-scp -r /home/mkuiack1/A12_pipeline/skymodel/Ateam_LBA_CC.sourcedb /opt/Data/mkuiack1/$SB-$OBS/$SOURCEDB
+scp -r $HOME/A12_pipeline/skymodel/Ateam_LBA_CC.sourcedb /opt/Data/mkuiack1/$SB-$OBS/$SOURCEDB
 
 
 # load LOFAR tools images
@@ -43,7 +43,7 @@ time DPPP $HOME/A12_pipeline/parsets/MADflag.parset msin=$MSFILE msin.datacolumn
 #time DPPP $HOME/A12_pipeline/parsets/antflag.parset msin=$MSFILE msin.datacolumn=FLAG_DATA  msout.datacolumn=FLAG_DATA
 
 # Calculate DI calibration solution
-time DPPP /home/mkuiack1/A12_pipeline/parsets/DI_noapply.parset  msin=$MSFILE msin.datacolumn=FLAG_DATA \
+time DPPP $HOME/A12_pipeline/parsets/DI_noapply.parset  msin=$MSFILE msin.datacolumn=FLAG_DATA \
 	cal.sourcedb=/opt/Data/mkuiack1/$SB-$OBS/$SOURCEDB \
 	cal.parmdb=$MSFILE/instrument cal.applysolution=false #| tee "/opt/Data/mkuiack1/"$SB"-"$OBS"/logs/$MSFILE-calcDI.log"
 
@@ -52,13 +52,13 @@ echo "### DI time"
 time parmexportcal in=$MSFILE/instrument out=$MSFILE/instrument_tind
 
 # Apply DI Calibration solution 
-time DPPP /home/mkuiack1/A12_pipeline/parsets/DI_apply.parset  msin=$MSFILE  msin.datacolumn=FLAG_DATA \
+time DPPP $HOME/A12_pipeline/parsets/DI_apply.parset  msin=$MSFILE  msin.datacolumn=FLAG_DATA \
 	apply.sourcedb=/opt/Data/mkuiack1/$SB-$OBS/$SOURCEDB \
 	apply.parmdb=$MSFILE/instrument_tind msout.datacolumn=DI_CORRECTED_DATA #| tee "/opt/Data/mkuiack1/"$SB"-"$OBS"/logs/"$MSFILE"-applyDI.log"
 
 
 # Calculate and apply DDE solution
-time DPPP /home/mkuiack1/A12_pipeline/parsets/DDE_cal.parset  msin=$MSFILE  \
+time DPPP $HOME/A12_pipeline/parsets/DDE_cal.parset  msin=$MSFILE  \
 	cal.sourcedb=/opt/Data/mkuiack1/$SB-$OBS/$SOURCEDB  \
 	cal.h5parm=$MSFILE/dde_instrument.h5 msout.datacolumn=DDE_CORRECTED_DATA #| tee "/opt/Data/mkuiack1/"$SB"-"$OBS/logs/$MSFILE-DDcal.log
 echo "### time DDE cal"
@@ -68,7 +68,7 @@ time H5parm2parmdb.py $MSFILE/dde_instrument.h5 $MSFILE  -i instrument -r dde
 time parmexportcal in=$MSFILE/dde_instrument out=$MSFILE/dde_instrument_tind
 
 # Subtract A-team
-time DPPP /home/mkuiack1/A12_pipeline/parsets/Subtract.parset  msin=$MSFILE  \
+time DPPP $HOME/A12_pipeline/parsets/Subtract.parset  msin=$MSFILE  \
 	sub.sourcedb=/opt/Data/mkuiack1/$SB-$OBS/$SOURCEDB  \
 	sub.applycal.parmdb=$MSFILE/dde_instrument_tind msin.datacolumn=DDE_CORRECTED_DATA \
 	msout.datacolumn=SUBTRACTED_DATA #| tee /opt/Data/mkuiack1/$SB-$OBS/logs/$MSFILE-sub.log

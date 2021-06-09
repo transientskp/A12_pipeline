@@ -25,14 +25,14 @@ for ((i=0;i<${#array[@]};++i));
 	wsclean -size 2300 2300 -scale 0.05 -j 6  \
                 -interval "${array[i]}" "${array2[i]}" -no-update-model-required -pol I -weight briggs 0.0 \
                 -name /opt/Data/mkuiack1/"$SB"-"$OBS"-cleaned/"${array3[i]}"_$SB-$OBS-CLEAN -niter 1000000 \
-                -multiscale -multiscale-scales 0,4,8,16,32,64 -fits-mask /home/mkuiack1/A12_pipeline/masks/o2300_m1050.fits  \
+                -multiscale -multiscale-scales 0,4,8,16,32,64 -fits-mask $HOME/A12_pipeline/masks/o2300_m1050.fits  \
                 -auto-mask 3  -auto-threshold 0.3 -local-rms -mgain 0.8 -fit-beam  \
                 -data-column SUBTRACTED_DATA $MSFILE;
  
 #	wsclean -size 2300 2300 -scale 0.05 -j 6 -parallel-gridding 6 -no-reorder \
 #		-interval "${array[i]}" "${array2[i]}" -no-update-model-required -pol I -weight briggs 0.0 \
 #		-name /opt/Data/mkuiack1/"$SB"-"$OBS"-cleaned/"${array3[i]}"_$SB-$OBS-CLEAN -niter 1000000 \
-#		-multiscale -multiscale-scales 0,4,8,16,32,64 -fits-mask /home/mkuiack1/A12_pipeline/masks/o2300_m1050.fits  \
+#		-multiscale -multiscale-scales 0,4,8,16,32,64 -fits-mask $HOME/A12_pipeline/masks/o2300_m1050.fits  \
 #		-auto-mask 3  -auto-threshold 0.3 -local-rms -mgain 0.8 -fit-beam  \
 #		-data-column SUBTRACTED_DATA $MSFILE; 
 done
@@ -40,7 +40,7 @@ done
 #wsclean -size 2300 2300 -scale 0.05 -j 6 -parallel-gridding 6 -no-reorder  \
 #               -interval $START $((END+1)) -intervals-out $((END+1)) -no-update-model-required -pol I -weight briggs 0.0 \
 #               -name /opt/Data/mkuiack1/"$SB"-"$OBS"-cleaned/"$SB"-"$OBS"_CLEAN -niter 1000000 \
-#               -multiscale -multiscale-scales 0,4,8,16,32,64 -fits-mask "/home/mkuiack1/A12_pipeline/masks/o2300_m1050.fits"  \
+#               -multiscale -multiscale-scales 0,4,8,16,32,64 -fits-mask "$HOME/A12_pipeline/masks/o2300_m1050.fits"  \
 #               -auto-mask 3  -auto-threshold 0.3 -local-rms -mgain 0.8 -fit-beam  \
 #               -data-column SUBTRACTED_DATA  $MSFILE;
 

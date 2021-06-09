@@ -21,7 +21,7 @@ source $HOME/env/bin/activate
 
 SOURCEDB='Ateam_LBA_CC.sourcedb'
 
-scp -r /home/mkuiack1/A12_pipeline/skymodel/Ateam_LBA_CC.sourcedb /opt/Data/mkuiack1/$SB-$OBS/$SOURCEDB
+scp -r $HOME/A12_pipeline/skymodel/Ateam_LBA_CC.sourcedb /opt/Data/mkuiack1/$SB-$OBS/$SOURCEDB
 
 
 # load LOFAR tools images
@@ -43,26 +43,26 @@ time DPPP $HOME/A12_pipeline/parsets/MADflag.parset msin=$MSFILE msin.datacolumn
 #time DPPP $HOME/A12_pipeline/parsets/antflag.parset msin=$MSFILE msin.datacolumn=FLAG_DATA  msout.datacolumn=FLAG_DATA
 
 # Calculate DI calibration solution
-time DPPP /home/mkuiack1/A12_pipeline/parsets/DI_noapply.parset  msin=$MSFILE msin.datacolumn=PROCESSED_DATA \
+time DPPP $HOME/A12_pipeline/parsets/DI_noapply.parset  msin=$MSFILE msin.datacolumn=PROCESSED_DATA \
 	cal.sourcedb=/opt/Data/mkuiack1/$SB-$OBS/$SOURCEDB \
 	cal.parmdb=$MSFILE/instrument cal.applysolution=false #| tee "/opt/Data/mkuiack1/"$SB"-"$OBS"/logs/$MSFILE-calcDI.log"
 
 echo "### DI time"
 
 # Apply DI Calibration solution 
-time DPPP /home/mkuiack1/A12_pipeline/parsets/DI_apply.parset  msin=$MSFILE  msin.datacolumn=PROCESSED_DATA \
+time DPPP $HOME/A12_pipeline/parsets/DI_apply.parset  msin=$MSFILE  msin.datacolumn=PROCESSED_DATA \
 	apply.sourcedb=/opt/Data/mkuiack1/$SB-$OBS/$SOURCEDB \
 	apply.parmdb=$MSFILE/instrument msout.datacolumn=PROCESSED_DATA #| tee "/opt/Data/mkuiack1/"$SB"-"$OBS"/logs/"$MSFILE"-applyDI.log"
 
 
 # Calculate and apply DDE solution
-time DPPP /home/mkuiack1/A12_pipeline/parsets/DDE_cal.parset  msin=$MSFILE msin.datacolumn=PROCESSED_DATA  \
+time DPPP $HOME/A12_pipeline/parsets/DDE_cal.parset  msin=$MSFILE msin.datacolumn=PROCESSED_DATA  \
 	cal.sourcedb=/opt/Data/mkuiack1/$SB-$OBS/$SOURCEDB  \
 	cal.h5parm=$MSFILE/dde_instrument.h5 msout.datacolumn=PROCESSED_DATA #| tee "/opt/Data/mkuiack1/"$SB"-"$OBS/logs/$MSFILE-DDcal.log
 echo "### time DDE cal"
 
 # Subtract A-team
-time DPPP /home/mkuiack1/A12_pipeline/parsets/Subtract.parset  msin=$MSFILE  \
+time DPPP $HOME/A12_pipeline/parsets/Subtract.parset  msin=$MSFILE  \
 	sub.sourcedb=/opt/Data/mkuiack1/$SB-$OBS/$SOURCEDB  \
 	sub.applycal.parmdb=$MSFILE/dde_instrument.h5 msin.datacolumn=PROCESSED_DATA \
 	msout.datacolumn=PROCESSED_DATA #| tee /opt/Data/mkuiack1/$SB-$OBS/logs/$MSFILE-sub.log
