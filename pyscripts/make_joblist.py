@@ -16,7 +16,7 @@ import glob
 
 obs=sys.argv[1]
 basedir = "/opt/Data"
-outdir = "/home/mkuiack1"
+outdir = "$HOME"
 
 visfile = glob.glob(basedir+'/{}/SB*-{}-lba_*.vis'.format(obs,obs))
 
