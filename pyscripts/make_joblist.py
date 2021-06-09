@@ -22,7 +22,7 @@ visfile = glob.glob(basedir+'/{}/SB*-{}-lba_*.vis'.format(obs,obs))
 
 print "Found {} visibilities.".format(len(visfile))
 print "Parsing", visfile[0]
-process = subprocess.Popen(['/home/mkuiack1/bin/afedit', 
+process = subprocess.Popen(['$HOME/bin/afedit', 
                             '-show-lst', 
                             visfile[0]],
                      stdout=subprocess.PIPE, 
