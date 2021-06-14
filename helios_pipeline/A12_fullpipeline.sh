@@ -9,9 +9,9 @@
 function clean_up {
   echo "### Running Clean_up ###"
   # - delete temporary files from the compute-node, before copying
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$OBS".vis"
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$OBS".ms"
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$OBS
+  rm -rf "/hddstore/idayan/"$SB"-"$OBS".vis"
+  rm -rf "/hddstore/idayan/"$SB"-"$OBS".ms"
+  rm -rf "/hddstore/idayan/"$SB"-"$OBS
   # - exit the script
   exit
 }
@@ -36,10 +36,10 @@ OBS=${START:0:10}"T"${START:11:8}"-"${END:11:8}
 INPUT=$4
 #rsync -avP "/zfs/helios/filer0/mkuiack1/202008122000/"$SB"-"$OBS".vis" "/ssdstore/mkuiack1/"
 
-mkdir /hddstore/mkuiack1
+mkdir /hddstore/idayan
 
 # Load LOFAR cookbook Simage
-singularity exec -B /hddstore/mkuiack1/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/opt/Archive/  \
+singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/opt/Archive/  \
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
 
