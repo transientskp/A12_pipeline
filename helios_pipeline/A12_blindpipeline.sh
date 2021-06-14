@@ -65,8 +65,8 @@ rsync -av "/hddstore/idayan/"$SB"-"$SLICE \
         "/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
 
 # send output to struis
-#rsync -av "/hddstore/mk/"$SB"-"$SLICE \
-        "mkuiack@struis.science.uva.nl:/scratch/mkuiack/lookhere/"
+# rsync -av "/hddstore/mk/"$SB"-"$SLICE \
+#        "mkuiack@struis.science.uva.nl:/scratch/mkuiack/lookhere/"
 
 
 # Clean up workspace 
