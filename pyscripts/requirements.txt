@@ -77,7 +77,7 @@ ptyprocess==0.6.0
 py==1.9.0
 pyfits==3.5
 pygame==1.9.6
-Pygments==2.5.2
+Pygments==2.7.4
 pyparsing==2.4.7
 pyproj==2.2.2
 pyrap==0.0.5
