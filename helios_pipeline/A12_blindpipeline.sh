@@ -10,9 +10,9 @@
 function clean_up {
   echo "### Running Clean_up ###"
   # - delete temporary files from the compute-node, before copying
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE".vis"
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE".ms"
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE
+  rm -rf "/hddstore/idayan/"$SB"-"$SLICE".vis"
+  rm -rf "/hddstore/idayan/"$SB"-"$SLICE".ms"
+  rm -rf "/hddstore/idayan/"$SB"-"$SLICE
   # - exit the script
   exit
 }
@@ -39,10 +39,10 @@ SLICE=${START:0:10}"T"${START:11:8}"-"${END:11:8}
 
 INPUT=$OBS"/"$SB"-"$OBS"-lba_*.vis"
 
-mkdir /hddstore/mkuiack1
+mkdir /hddstore/idayan
 
 # Load LOFAR cookbook Simage
-singularity exec -B /hddstore/mkuiack1/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/opt/Archive/  \
+singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/opt/Archive/  \
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
 
@@ -57,15 +57,15 @@ singularity exec -B /hddstore/:/opt/Data  \
 #rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE"/Ateam_LBA_CC.sourcedb"
 
 # send output to Archive
-rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE".ms" \
-	"/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"
+rsync -av "/hddstore/idayan/"$SB"-"$SLICE".ms" \
+	"/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
 
 
-rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE \
-        "/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"
+rsync -av "/hddstore/idayan/"$SB"-"$SLICE \
+        "/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
 
 # send output to struis
-rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE \
+#rsync -av "/hddstore/mk/"$SB"-"$SLICE \
         "mkuiack@struis.science.uva.nl:/scratch/mkuiack/lookhere/"
 
 
