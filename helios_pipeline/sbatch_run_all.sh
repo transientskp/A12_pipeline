@@ -22,7 +22,7 @@ SB=$1
 OBS=$2
 
 
-rsync -avP "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"$SB"-"$OBS".ms" "/ssdstore/mkuiack1/"
+rsync -avP "/zfs/helios/filer0/idayan/202008122000/"$OBS"_all/"$SB"-"$OBS".ms" "/ssdstore/idayan/"
 
 # run_script runs all: AARTFAAC2MS, DPPP, and WSClean
 singularity exec -B /ssdstore/:/opt/Data  \
@@ -30,19 +30,19 @@ singularity exec -B /ssdstore/:/opt/Data  \
 	$SB $OBS
 
 # send output to Archive
-rsync -avP "/ssdstore/mkuiack1/"$SB"-"$OBS \
-	"/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"$SB-$OBS
+rsync -avP "/ssdstore/idayan/"$SB"-"$OBS \
+	"/zfs/helios/filer0/idayan/202008122000/"$OBS"_all/"$SB-$OBS
 
-rsync -avP "/ssdstore/mkuiack1/"$SB"-"$OBS".ms" \
-        "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"
+rsync -avP "/ssdstore/idayan/"$SB"-"$OBS".ms" \
+        "/zfs/helios/filer0/idayan/202008122000/"$OBS"_all/"
 
-rm -rf "/ssdstore/mkuiack1/"$SB"-"$OBS".ms"
+rm -rf "/ssdstore/idayan/"$SB"-"$OBS".ms"
 
 # send output to struis
-rsync -avP /ssdstore/mkuiack1/$SB-$OBS \
-	mkuiack@struis.science.uva.nl:"/scratch/mkuiack/lookhere/"
+#rsync -avP /ssdstore/mkuiack1/$SB-$OBS \
+#	mkuiack@struis.science.uva.nl:"/scratch/mkuiack/lookhere/"
 
 
 # Clean up workspace 
-rm -rf /ssdstore/mkuiack1/$SB-$OBS
+rm -rf /ssdstore/idayan/$SB-$OBS
 
