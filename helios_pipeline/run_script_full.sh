@@ -6,11 +6,11 @@
 OBS=$2
 SB=$1
 
-MSFILE="/opt/Data/mkuiack1/"$SB"-"$OBS".ms"
+MSFILE="/opt/Data/idayan/"$SB"-"$OBS".ms"
 
 
 # making work dirs
-#mkdir /opt/Data/mkuiack1
+#mkdir /opt/Data/ack1
 mkdir /opt/Data/idayan/$SB-$OBS
 mkdir /opt/Data/idayan/$SB-$OBS/parsets
 mkdir /opt/Data/idayan/$SB-$OBS/imgs
