@@ -9,8 +9,8 @@
 function clean_up {
   echo "### Running Clean_up ###"
   # - delete temporary files from the compute-node, before copying
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE".ms"
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE"-pols"
+  rm -rf "/hddstore/idayan/"$SB"-"$SLICE".ms"
+  rm -rf "/hddstore/idayan/"$SB"-"$SLICE"-pols"
   # - exit the script
   exit
 }
@@ -34,10 +34,10 @@ END=$4
 SLICE=${START:0:10}"T"${START:11:8}"-"${END:11:8}
 
 
-mkdir "/hddstore/mkuiack1/" 
-rsync -av "/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"$SB"-"$SLICE".ms" "/hddstore/mkuiack1/"
+mkdir "/hddstore/idayan/" 
+rsync -av "/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"$SB"-"$SLICE".ms" "/hddstore/idayan/"
 
-mkdir "/hddstore/mkuiack1/"$SB"-"$SLICE"-pols"
+mkdir "/hddstore/idayan/"$SB"-"$SLICE"-pols"
 
 # run_script runs all: AARTFAAC2MS, DPPP, and WSClean
 singularity exec -B /hddstore/:/opt/Data  \
@@ -48,8 +48,8 @@ singularity exec -B /hddstore/:/opt/Data  \
 echo "### SINGULARITY DONE ###"
 
 # send output to Archive
-rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE"-pols/"*".fits" \
-	"/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"$SB"-"$SLICE"/pols/"
+rsync -av "/hddstore/idayan/"$SB"-"$SLICE"-pols/"*".fits" \
+	"/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"$SB"-"$SLICE"/pols/"
 
 # send output to struis
 #rsync -avP "/hddstore/mkuiack1/"$SB"-"$OBS"-pols/"*".fits" \
