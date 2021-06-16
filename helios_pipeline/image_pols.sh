@@ -32,9 +32,9 @@ START=$3
 END=$4
 
 mkdir "/hddstore/idayan/" 
-rsync -av "/zfs/helios/filer0/idaayan/202008122000/"$OBS"_all/"$SB"-"$OBS".ms" "/hddstore/mkuiack1/"
+rsync -av "/zfs/helios/filer0/idaayan/202008122000/"$OBS"_all/"$SB"-"$OBS".ms" "/hddstore/idayan/"
 
-mkdir "/hddstore/mkuiack1/"$SB"-"$OBS"-pols"
+mkdir "/hddstore/idayan/"$SB"-"$OBS"-pols"
 
 # run_script runs all: AARTFAAC2MS, DPPP, and WSClean
 singularity exec -B /hddstore/:/opt/Data  \
