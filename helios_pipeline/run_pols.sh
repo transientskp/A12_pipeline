@@ -29,7 +29,7 @@ array3=(`seq -f "%05g" $START $END`)
 for ((i=0;i<${#array[@]};++i));
 	do wsclean -size 2300 2300  -j 12 -scale 0.05 -update-model-required  -pol I,U,V,Q  \
 		-fits-mask $HOME/A12_pipeline/masks/o2300_m1050.fits -weight briggs 0.0 -interval "${array[i]}" "${array2[i]}" \
-		-name "/opt/Data/mkuiack1/"$SB"-"$OBS"-pols/UVmin_"${array3[i]}"_"$SB"-"$OBS -niter 100000 -multiscale -multiscale-scales 0,4,8,16,32,64 \
+		-name "/opt/Data/idayan/"$SB"-"$OBS"-pols/UVmin_"${array3[i]}"_"$SB"-"$OBS -niter 100000 -multiscale -multiscale-scales 0,4,8,16,32,64 \
 		-channels-out 5 -auto-mask 3 -auto-threshold 0.3 -local-rms -mgain 0.8 -fit-beam \
 		-data-column SUBTRACTED_DATA $MSFILE
 done
