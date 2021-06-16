@@ -3,9 +3,9 @@
 function clean_up {
   echo "### Running Clean_up ###"
   # - delete temporary files from the compute-node, before copying
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE".vis"
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE".ms"
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE
+  rm -rf "/hddstore/idayan/"$SB"-"$SLICE".vis"
+  rm -rf "/hddstore/idayan/"$SB"-"$SLICE".ms"
+  rm -rf "/hddstore/idayan/"$SB"-"$SLICE
   # - exit the script
   date
   exit
