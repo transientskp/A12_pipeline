@@ -9,7 +9,7 @@
 SB=$1
 OBS=$2
 
-MSFILE="/opt/Data/mkuiack1/"$SB"-"$OBS".ms"
+MSFILE="/opt/Data/idayan/"$SB"-"$OBS".ms"
 
 START=$3
 END=$4
