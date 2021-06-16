@@ -56,13 +56,13 @@ singularity exec -B /hddstore/:/opt/Data  \
 
 #rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE"/Ateam_LBA_CC.sourcedb"
 
-# send output to Archive
-# rsync -av "/hddstore/idayan/"$SB"-"$SLICE".ms" \
-#	"/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
+send output to Archive
+ rsync -av "/hddstore/idayan/"$SB"-"$SLICE".ms" \
+	"/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
 
 
-# rsync -av "/hddstore/idayan/"$SB"-"$SLICE \
-#        "/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
+rsync -av "/hddstore/idayan/"$SB"-"$SLICE \
+        "/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
 
 # send output to struis
 # rsync -av "/hddstore/mk/"$SB"-"$SLICE \
