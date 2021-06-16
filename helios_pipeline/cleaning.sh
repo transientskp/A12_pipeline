@@ -9,8 +9,8 @@
 function clean_up {
   echo "### Running Clean_up ###"
   # - delete temporary files from the compute-node, before copying
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$OBS".ms"
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$OBS"-cleaned"
+  rm -rf "/hddstore/idayan/"$SB"-"$OBS".ms"
+  rm -rf "/hddstore/idayan/"$SB"-"$OBS"-cleaned"
   # - exit the script
   exit
 }
@@ -31,10 +31,10 @@ OBS=$2
 START=$3
 END=$4
 
-mkdir "/hddstore/mkuiack1/" 
-rsync -av "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"$SB"-"$OBS".ms" "/hddstore/mkuiack1/"
+mkdir "/hddstore/idayan/" 
+rsync -av "/zfs/helios/filer0/idayan/202008122000/"$OBS"_all/"$SB"-"$OBS".ms" "/hddstore/idayan/"
 
-mkdir "/hddstore/mkuiack1/"$SB"-"$OBS"-cleaned"
+mkdir "/hddstore/idayan/"$SB"-"$OBS"-cleaned"
 
 # run_script runs all: AARTFAAC2MS, DPPP, and WSClean
 singularity exec -B /hddstore/:/opt/Data  \
@@ -42,19 +42,19 @@ singularity exec -B /hddstore/:/opt/Data  \
 	$SB $OBS $START $END & wait
 
 
-ls "/hddstore/mkuiack1/"$SB"-"$OBS".ms"
+ls "/hddstore/idayan/"$SB"-"$OBS".ms"
 echo "### SINGULARITY DONE ###"
 
 # send output to Archive
-rsync -avP "/hddstore/mkuiack1/"$SB"-"$OBS"-cleaned/"*"-image.fits" \
-	"/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"$SB"-"$OBS"/cleaned/"
+rsync -avP "/hddstore/idayan/"$SB"-"$OBS"-cleaned/"*"-image.fits" \
+	"/zfs/helios/filer0/idayan/202008122000/"$OBS"_all/"$SB"-"$OBS"/cleaned/"
 
-rsync -avP "/hddstore/mkuiack1/"$SB"-"$OBS"-cleaned/"*"-dirty.fits" \
-        "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"$SB"-"$OBS"/cleaned/"
+rsync -avP "/hddstore/idayan/"$SB"-"$OBS"-cleaned/"*"-dirty.fits" \
+        "/zfs/helios/filer0/idayan/202008122000/"$OBS"_all/"$SB"-"$OBS"/cleaned/"
 
 # send output to struis
-rsync -avP "/hddstore/mkuiack1/"$SB"-"$OBS"-cleaned/"*"-image.fits" \
-	mkuiack@struis.science.uva.nl:"/scratch/mkuiack/lookhere/"$SB"-"$OBS"-cleaned/"
+#rsync -avP "/hddstore/mkuiack1/"$SB"-"$OBS"-cleaned/"*"-image.fits" \
+#	mkuiack@struis.science.uva.nl:"/scratch/mkuiack/lookhere/"$SB"-"$OBS"-cleaned/"
 
 echo "FILE TRANSFER DONE"
 # Clean up workspace 
