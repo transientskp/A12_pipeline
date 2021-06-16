@@ -9,8 +9,8 @@
 function clean_up {
   echo "### Running Clean_up ###"
   # - delete temporary files from the compute-node, before copying
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$OBS".ms"
-  rm -rf "/hddstore/mkuiack1/"$SB"-"$OBS"-pols"
+  rm -rf "/hddstore/idayan/"$SB"-"$OBS".ms"
+  rm -rf "/hddstore/idayan/"$SB"-"$OBS"-pols"
   # - exit the script
   exit
 }
@@ -31,8 +31,8 @@ OBS=$2
 START=$3
 END=$4
 
-mkdir "/hddstore/mkuiack1/" 
-rsync -av "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"$SB"-"$OBS".ms" "/hddstore/mkuiack1/"
+mkdir "/hddstore/idayan/" 
+rsync -av "/zfs/helios/filer0/idaayan/202008122000/"$OBS"_all/"$SB"-"$OBS".ms" "/hddstore/mkuiack1/"
 
 mkdir "/hddstore/mkuiack1/"$SB"-"$OBS"-pols"
 
@@ -45,8 +45,8 @@ singularity exec -B /hddstore/:/opt/Data  \
 echo "### SINGULARITY DONE ###"
 
 # send output to Archive
-rsync -avP "/hddstore/mkuiack1/"$SB"-"$OBS"-pols/"*".fits" \
-	"/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"$SB"-"$OBS"/pols/"
+rsync -avP "/hddstore/idayan/"$SB"-"$OBS"-pols/"*".fits" \
+	"/zfs/helios/filer0/idayan/202008122000/"$OBS"_all/"$SB"-"$OBS"/pols/"
 
 # send output to struis
 #rsync -avP "/hddstore/mkuiack1/"$SB"-"$OBS"-pols/"*".fits" \
