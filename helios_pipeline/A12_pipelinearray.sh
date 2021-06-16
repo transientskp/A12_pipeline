@@ -54,10 +54,10 @@ singularity exec -B /hddstore/:/opt/Data  \
 
 # send output to Archive
 rsync -av "/hddstore/idayan/"$SB"-"$SLICE".ms" \
-	"/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"
+	"/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
 
 
-rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE \
+rsync -av "/hddstore/idayan/"$SB"-"$SLICE \
         "/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
 
 # send output to struis
