@@ -21,10 +21,10 @@ OBS=${START:0:10}"T"${START:11:8}-${END:11:8}
 INPUT=$4
 #rsync -avP "/zfs/helios/filer0/mkuiack1/202008122000/"$SB"-"$OBS".vis" "/ssdstore/mkuiack1/"
 
-mkdir /ssdstore/mkuiack1
+mkdir /ssdstore/idayan
 
 # Load LOFAR cookbook Simage
-singularity exec -B /ssdstore/idayan/:/opt/Data/,/zfs/helios/filer0/idayan/:/opt/Archive/  \
+singularity exec -B /ssdstore/idayan/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/opt/Archive/  \
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
 
