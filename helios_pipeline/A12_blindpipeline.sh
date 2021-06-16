@@ -46,7 +46,7 @@ singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/o
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
 
-mkdir "/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"
+#mkdir "/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"
 
 
 # run_script runs all: AARTFAAC2MS, DPPP, and WSClean
@@ -57,12 +57,12 @@ singularity exec -B /hddstore/:/opt/Data  \
 #rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE"/Ateam_LBA_CC.sourcedb"
 
 # send output to Archive
-rsync -av "/hddstore/idayan/"$SB"-"$SLICE".ms" \
-	"/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
+# rsync -av "/hddstore/idayan/"$SB"-"$SLICE".ms" \
+#	"/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
 
 
-rsync -av "/hddstore/idayan/"$SB"-"$SLICE \
-        "/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
+# rsync -av "/hddstore/idayan/"$SB"-"$SLICE \
+#        "/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
 
 # send output to struis
 # rsync -av "/hddstore/mk/"$SB"-"$SLICE \
