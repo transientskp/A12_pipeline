@@ -43,7 +43,7 @@ singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/o
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
 
-mkdir "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"
+#mkdir "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"     !!!!!!!!!!!!!!!!!!
 
 #rm -rf "/hddstore/mkuiack1/"$SB"-"$OBS".vis"
 #rsync -avP "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"$SB"-"$OBS".ms" "/ssdstore/mkuiack1/"
@@ -54,11 +54,11 @@ singularity exec -B /hddstore/:/opt/Data  \
         $SB $OBS
 
 # send output to Archive
-rsync -av "/hddstore/mkuiack1/"$SB"-"$OBS".ms" \
-	"/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"
+#rsync -av "/hddstore/mkuiack1/"$SB"-"$OBS".ms" \
+#	"/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"
 
-rsync -av "/hddstore/mkuiack1/"$SB"-"$OBS \
-        "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"
+#rsync -av "/hddstore/mkuiack1/"$SB"-"$OBS \
+#        "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"
 
 #rsync -avP "/ssdstore/mkuiack1/"$SB"-"$OBS".ms" \
 #        "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"
