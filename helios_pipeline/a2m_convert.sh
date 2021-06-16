@@ -28,9 +28,9 @@ singularity exec -B /ssdstore/idayan/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/o
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
 
-#mkdir "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/" #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+mkdir "/zfs/helios/filer0/idayan/202008122000/"$OBS"_all/" #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-#rsync -avP "/ssdstore/mkuiack1/"$SB"-"$OBS".ms" "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/" #!!!!!!!!!!!!!!!!!!!
+rsync -avP "/ssdstore/idayan/"$SB"-"$OBS".ms" "/zfs/helios/filer0/idayan/202008122000/"$OBS"_all/" #!!!!!!!!!!!!!!!!!!!
 
 rm -rf "/ssdstore/idayan/"$SB"-"$OBS".vis"
 rm -rf "/ssdstore/idayan/"$SB"-"$OBS".ms"
