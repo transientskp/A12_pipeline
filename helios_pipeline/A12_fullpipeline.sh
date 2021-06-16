@@ -54,11 +54,11 @@ singularity exec -B /hddstore/:/opt/Data  \
         $SB $OBS
 
 # send output to Archive
-#rsync -av "/hddstore/mkuiack1/"$SB"-"$OBS".ms" \
-#	"/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"
+rsync -av "/hddstore/idayan/"$SB"-"$OBS".ms" \
+	"/zfs/helios/filer0/idayan/202008122000/"$OBS"_all/"
 
-#rsync -av "/hddstore/mkuiack1/"$SB"-"$OBS \
-#        "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"
+rsync -av "/hddstore/idayan/"$SB"-"$OBS \
+        "/zfs/helios/filer0/idayan/202008122000/"$OBS"_all/"
 
 #rsync -avP "/ssdstore/mkuiack1/"$SB"-"$OBS".ms" \
 #        "/zfs/helios/filer0/mkuiack1/202008122000/"$OBS"_all/"
