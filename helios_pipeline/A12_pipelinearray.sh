@@ -33,16 +33,16 @@ SLICE=${START:0:10}"T"${START:11:8}"-"${END:11:8}
 
 INPUT=$OBS"/"$SB"-"$OBS"-lba_*.vis"
 
-mkdir /hddstore/mkuiack1
-mkdir "/hddstore/mkuiack1/"$SB"-"$SLICE
-cd  "/hddstore/mkuiack1/"$SB"-"$SLICE
+mkdir /hddstore/idayan
+mkdir "/hddstore/idayan/"$SB"-"$SLICE
+cd  "/hddstore/idayan/"$SB"-"$SLICE
 
 # Load LOFAR cookbook Simage
-singularity exec -B /hddstore/mkuiack1/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/opt/Archive/  \
+singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/opt/Archive/  \
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
 
-mkdir "/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"
+mkdir "/zfs/helios/filer0/mku/"$OBS"/"$SLICE"_all/"
 
 
 # run_script runs all: AARTFAAC2MS, DPPP, and WSClean
@@ -53,12 +53,12 @@ singularity exec -B /hddstore/:/opt/Data  \
 #rm -rf "/hddstore/mkuiack1/"$SB"-"$SLICE"/Ateam_LBA_CC.sourcedb"
 
 # send output to Archive
-#rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE".ms" \
-#	"/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"
+rsync -av "/hddstore/idayan/"$SB"-"$SLICE".ms" \
+	"/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"
 
 
 rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE \
-        "/zfs/helios/filer0/mkuiack1/"$OBS"/"$SLICE"_all/"
+        "/zfs/helios/filer0/idayan/"$OBS"/"$SLICE"_all/"
 
 # send output to struis
 #rsync -av "/hddstore/mkuiack1/"$SB"-"$SLICE \
