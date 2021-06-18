@@ -39,7 +39,7 @@ INPUT=$4
 mkdir /hddstore/idayan
 
 # Load LOFAR cookbook Simage
-singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/opt/Archive/  \
+singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer1/mkuiack1/:/opt/Archive/  \
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
 
