@@ -6,7 +6,7 @@
 OBS=$2
 SB=$1
 
-MSFILE="/opt/Data/idayan/"$SB"-"$OBS".ms"
+MSFILE="/opt/Data/mkuiack1/"$SB"-"$OBS".ms"
 
 
 # making work dirs
