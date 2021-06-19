@@ -38,7 +38,7 @@ mkdir "/hddstore/idayan/"$SB"-"$SLICE
 cd  "/hddstore/idayan/"$SB"-"$SLICE
 
 # Load LOFAR cookbook Simage
-singularity exec -B /hddstore/mkuiack1/:/opt/Data/,/zfs/helios/filer1/mkuiack1/:/opt/Archive/:/hddstore/mkuiack1/:/hddstore/idayan/  \
+singularity exec -B /hddstore/mkuiack1/:/opt/Data/,/zfs/helios/filer1/mkuiack1/:/opt/Archive/,/hddstore/mkuiack1/:/hddstore/idayan/  \
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
 
