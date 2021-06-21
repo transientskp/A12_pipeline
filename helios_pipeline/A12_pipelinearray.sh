@@ -42,11 +42,11 @@ singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer1/mkuiack1/:/o
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
 
-mkdir "/zfs/helios/filer1/idayan/"$OBS"/"$SLICE"_all/"
+mkdir -p "/zfs/helios/filer1/idayan/"$OBS"/"$SLICE"_all/"
 
 
 # run_script runs all: AARTFAAC2MS, DPPP, and WSClean
-singularity exec -B /hddstore/idayan:/opt/Data  \
+singularity exec -B /hddstore/:/opt/Data  \
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_script_full.sh \
         $SB $SLICE
 
