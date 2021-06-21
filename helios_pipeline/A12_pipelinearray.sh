@@ -46,7 +46,7 @@ mkdir "/zfs/helios/filer1/idayan/"$OBS"/"$SLICE"_all/"
 
 
 # run_script runs all: AARTFAAC2MS, DPPP, and WSClean
-singularity exec -B /hddstore/:/opt/Data  \
+singularity exec -B /hddstore/idayan:/opt/Data  \
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_script_full.sh \
         $SB $SLICE
 
