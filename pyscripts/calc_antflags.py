@@ -16,8 +16,8 @@ badstations = np.array([], dtype="int")
 
 all_means = []
 
-for stat_name in ["/opt/Data/mkuiack1/{0}-{1}/parsets/{0}-{1}-AOQ_STD.tsv".format(SB,OBS),  
-                  "/opt/Data/mkuiack1/{0}-{1}/parsets/{0}-{1}-AOQ_SumP2.tsv".format(SB,OBS)]:
+for stat_name in ["/opt/Data/idayan/{0}-{1}/parsets/{0}-{1}-AOQ_STD.tsv".format(SB,OBS),  
+                  "/opt/Data/idayan/{0}-{1}/parsets/{0}-{1}-AOQ_SumP2.tsv".format(SB,OBS)]:
 
 
     aqdf = pd.read_csv(stat_name, delimiter="\t")
