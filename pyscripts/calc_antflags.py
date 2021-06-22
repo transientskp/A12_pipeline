@@ -101,7 +101,7 @@ flags = ','.join(np.array(all_badstations[idx], dtype=str))
 print all_badstations, "len:", len(all_badstations)
 print "output string:", ','.join(np.array(all_badstations[idx], dtype=str))
 
-outF = open ("/opt/Data/mkuiack1/{0}-{1}/parsets/antflag.parset".format (SB, OBS), "w")
+outF = open ("/opt/Data/idayan/{0}-{1}/parsets/antflag.parset".format (SB, OBS), "w")
 outF.write('''## Flag bad baselines
 
 msin.datacolumn=FLAG_DATA
