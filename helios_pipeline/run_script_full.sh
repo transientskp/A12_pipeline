@@ -33,7 +33,8 @@ aoquality query_b StandardDeviation $MSFILE | tee "/opt/Data/idayan/"$SB"-"$OBS"
 aoquality query_b SumP2 $MSFILE | tee "/opt/Data/idayan/"$SB"-"$OBS"/parsets/"$SB"-"$OBS"-AOQ_SumP2.tsv"
 
 # Create antflag.parset from aoquality outputs
-python $HOME/calc_antflags.py $SB $OBS
+python $HOME/A12_pipeline/pyscripts/calc_antflags.py $SB $OBS
+#python $HOME/calc_antflags.py $SB $OBS
 
 # flag antenna in two steps first bad crosscorr, then all autocorr
 time DPPP /opt/Data/idayan/$SB-$OBS/parsets/antflag.parset msin=$MSFILE msin.datacolumn=DATA msout.datacolumn=PROCESSED_DATA
