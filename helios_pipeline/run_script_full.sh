@@ -80,7 +80,7 @@ for ((i=0;i<${#array[@]};++i)); \
 	do echo /opt/Data/imgs/"${array3[i]}"_$SB-$OBS; \
 		time wsclean -size 2300 2300 -scale 0.05 -j  23  \
 	       	-interval "${array[i]}" "${array2[i]}" -no-update-model-required -pol I -weight briggs 0.0 \
-		-name /opt/Data/mkuiack1/$SB-$OBS/imgs/"${array3[i]}"_$SB-$OBS -niter 0 -no-dirty -auto-mask 3  -auto-threshold 0.3 \
+		-name /opt/Data/idayan/$SB-$OBS/imgs/"${array3[i]}"_$SB-$OBS -niter 0 -no-dirty -auto-mask 3  -auto-threshold 0.3 \
 		-local-rms -mgain 0.8  -fit-beam -clean-border 21   \
 		-data-column PROCESSED_DATA $MSFILE; 
 done
