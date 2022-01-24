@@ -70,6 +70,10 @@ time DPPP $HOME/A12_pipeline/parsets/Subtract.parset  msin=$MSFILE  \
 
 echo "### time subtract"
 
+# Remove the shortest baselines to remove the Galactic extended emission
+time DPPP $HOME/A12_pipeline/parsets/flagShortBaselines.parset msin=$MSFILE 
+msin.datacolumn=PROCESSED_DATA msout.datacolumn=PROCESSED_DATA #| tee /opt/Data/mkuiack1/$SB-$OBS/logs/$MSFILE-sub.log
+
 rm -rf /opt/Data/idayan/$SB-$OBS/$SOURCEDB
 
 # Image final data product: SUBTRACTED_DATA
