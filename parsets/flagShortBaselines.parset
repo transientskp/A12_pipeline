@@ -1,0 +1,12 @@
+## Flag the shortest baselines to remove Galactic emission
+
+msin.datacolumn=PROCESSED_DATA
+msout.datacolumn=PROCESSED_DATA
+msout=.
+
+steps=[preflagger,count]
+
+preflagger.type=preflagger
+
+preflagger.mode=set
+preflagger.blmin=30 #where the number is the minimum baseline length in meters
