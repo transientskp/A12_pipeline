@@ -9,4 +9,4 @@ steps=[preflagger,count]
 preflagger.type=preflagger
 
 preflagger.mode=set
-preflagger.blmin=30 #where the number is the minimum baseline length in meters
+preflagger.blmin=50 #where the number is the minimum baseline length in meters
