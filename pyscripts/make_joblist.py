@@ -16,13 +16,15 @@ import glob
 
 obs=sys.argv[1]
 basedir = "/opt/Data"
-outdir = "/home/mkuiack1"
+#outdir = "/home/mkuiack1"
+outdir = "/home/idayan"
 
 visfile = glob.glob(basedir+'/{}/SB*-{}-lba_*.vis'.format(obs,obs))
 
 print "Found {} visibilities.".format(len(visfile))
 print "Parsing", visfile[0]
-process = subprocess.Popen(['/home/mkuiack1/bin/afedit', 
+#process = subprocess.Popen(['/home/mkuiack1/bin/afedit', 
+process = subprocess.Popen(['/home/idayan/bin/afedit',
                             '-show-lst', 
                             visfile[0]],
                      stdout=subprocess.PIPE, 
