@@ -38,13 +38,14 @@ mkdir "/hddstore/idayan/"$SB"-"$SLICE
 cd  "/hddstore/idayan/"$SB"-"$SLICE
 
 # Load LOFAR cookbook Simage
-#singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer1/mkuiack1/:/opt/Archive/  \
-#        $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
-#        $SB $START $END $INPUT
-#MODIFY1
-singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer1/idayan/VISfromMK-filer1/:opt/Archive/  \
+# modify 2 !!!
+singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer1/mkuiack1/:/opt/Archive/  \
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
+#MODIFY1 --going to modify 2 because of rsync is too slow
+#singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer1/idayan/VISfromMK-filer1/:opt/Archive/  \
+#        $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
+#        $SB $START $END $INPUT
 
 mkdir -p "/zfs/helios/filer1/idayan/"$OBS"/"$SLICE"_all/"
 
