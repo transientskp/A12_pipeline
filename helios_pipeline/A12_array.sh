@@ -2,10 +2,10 @@
 
 #SBATCH -N 1
 #SBATCH --ntasks-per-node 1
-#SBATCH --cpus-per-task 8
+#SBATCH --cpus-per-task 12
 #SBATCH --mem 25G
 #SBATCH --time 240:00:00
-#SBATCH --array=1-50%32
+#SBATCH --array=1-150%32
 ### ## #SBATCH --array=1-128%32
 #### ## SBATCH --exclude=helios-cn[013-020]
 ##### #### ### #SBATCH --w helios-cn005,helios-cn006,helios-cn007,helios-cn018,helios-cn019
@@ -25,10 +25,13 @@
 
 OBSSLICEFILE=$1
 
+numline=$(wc -l $OBSSLICEFILE)
+numlinediv= $((($numline/150) + ($numline%150 >0)))
 
+#$(((100 / 3) + (100 % 3 > 0)))
 
 START=$SLURM_ARRAY_TASK_ID
-NUMLINES=51
+NUMLINES=$numlinediv
 STOP=$((SLURM_ARRAY_TASK_ID*NUMLINES))
 #STOP=$((SLURM_ARRAY_TASK_ID*NUMLINES +16000))
 START="$(($STOP - $(($NUMLINES - 1)) ))"
