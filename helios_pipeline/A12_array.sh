@@ -40,18 +40,21 @@ echo "STOP=$STOP"
 
 for (( N = $START; N <= $STOP; N++ ))
 do
+    echo "for loop starts"
     echo $N
     #LINE=$(sed -n "$N"p ~/3Dates.txt)
     #ALL3Dates
     ###!!!!!! tobeaveraged101102 NOT YET check first the ones in 70 deg !!!!!!!
     ### /zfs/helios/filer1/idayan/tobeaveraged101102.txt 540540
     #/home/idayan/202012calcdurat.txt
-    LINE=$(sed -n "$N"p /home/idayan/202012calcdurat.txt)
+    #LINE=$(sed -n "$N"p /home/idayan/202012calcdurat.txt)
     #LINE=$(sed -n "$N"p /zfs/helios/filer1/idayan/tobeaveraged101102.txt)
     #LINE=$(sed -n "$N"p ~/REMAINIGDATES-GPs10110204up.txt) ###LINE=$(sed -n "$N"p ~/testsearchGPlist.txt)
     #LINE=$(sed -n "$N"p ~/imgsin60.txt)
     #LINE=$(sed -n "$N"p ~/ALL202007Dates2.txt)
-    echo $LINE
+    echo "in middle of for loop"
+    #echo $LINE
+    #echo
     #$HOME/A12_pipeline/helios_pipeline/A12_pipelinearray.sh $LINE
     $HOME/A12_pipeline/helios_pipeline/A12_pipelinearray.sh `sed $N'q;d' $OBSSLICEFILE` 
     #$HOME/A12_pipeline/helios_pipeline/A12_pipelinearray.sh `sed $SLURM_ARRAY_TASK_ID'q;d' $OBSSLICEFILE` 
