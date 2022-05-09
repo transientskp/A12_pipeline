@@ -37,11 +37,17 @@ mkdir /hddstore/idayan
 mkdir "/hddstore/idayan/"$SB"-"$SLICE
 cd  "/hddstore/idayan/"$SB"-"$SLICE
 
-# Load LOFAR cookbook Simage
-# modify 2 !!!
-singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer1/mkuiack1/:/opt/Archive/  \
+# modify 3 !!! it is for 5 hours observation of 202012 in filer 0
+singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/opt/Archive/  \
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
+
+# Load LOFAR cookbook Simage
+# modify 2 !!!
+#singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer1/mkuiack1/:/opt/Archive/  \
+#        $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
+#        $SB $START $END $INPUT
+	
 #MODIFY1 --going to modify 2 because of rsync is too slow
 #singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer1/idayan/VISfromMK-filer1/:opt/Archive/  \
 #        $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
