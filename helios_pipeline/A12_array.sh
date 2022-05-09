@@ -52,7 +52,8 @@ do
     #LINE=$(sed -n "$N"p ~/imgsin60.txt)
     #LINE=$(sed -n "$N"p ~/ALL202007Dates2.txt)
     echo $LINE
-    $HOME/A12_pipeline/helios_pipeline/A12_pipelinearray.sh $LINE
+    #$HOME/A12_pipeline/helios_pipeline/A12_pipelinearray.sh $LINE
+    $HOME/A12_pipeline/helios_pipeline/A12_pipelinearray.sh `sed $N'q;d' $OBSSLICEFILE` 
     #$HOME/A12_pipeline/helios_pipeline/A12_pipelinearray.sh `sed $SLURM_ARRAY_TASK_ID'q;d' $OBSSLICEFILE` 
     #python /home/idayan/dataframe2/IMAGES-IN-TARGET/IN70-loccheck.py $LINE
     
