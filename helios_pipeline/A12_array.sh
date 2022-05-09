@@ -5,7 +5,7 @@
 #SBATCH --cpus-per-task 8
 #SBATCH --mem 25G
 #SBATCH --time 240:00:00
-#SBATCH --array=1-2528%32
+#SBATCH --array=1-128%32
 ### ## #SBATCH --array=1-128%32
 #### ## SBATCH --exclude=helios-cn[013-020]
 ##### #### ### #SBATCH --w helios-cn005,helios-cn006,helios-cn007,helios-cn018,helios-cn019
@@ -13,8 +13,55 @@
 ##### ### SBATCH -w helios-cn018,helios-cn39
 
 
+#OBSSLICEFILE=$1
+
+#$HOME/A12_pipeline/helios_pipeline/A12_pipelinearray.sh `sed $SLURM_ARRAY_TASK_ID'q;d' $OBSSLICEFILE` 
+
+######################################################
+### update for line number
+### number of line excess 128
+### !!!!!!! 09 May 2022
+######################################################
+
 OBSSLICEFILE=$1
 
-$HOME/A12_pipeline/helios_pipeline/A12_pipelinearray.sh `sed $SLURM_ARRAY_TASK_ID'q;d' $OBSSLICEFILE` 
 
 
+START=$SLURM_ARRAY_TASK_ID
+NUMLINES=50
+STOP=$((SLURM_ARRAY_TASK_ID*NUMLINES))
+#STOP=$((SLURM_ARRAY_TASK_ID*NUMLINES +16000))
+START="$(($STOP - $(($NUMLINES - 1)) ))"
+#START="$(($STOP - $(($NUMLINES - 1))))"
+#START="$(($STOP - $(($NUMLINES - 1))))"
+
+echo "START=$START"
+echo "STOP=$STOP"
+
+for (( N = $START; N <= $STOP; N++ ))
+do
+    echo $N
+    #LINE=$(sed -n "$N"p ~/3Dates.txt)
+    #ALL3Dates
+    ###!!!!!! tobeaveraged101102 NOT YET check first the ones in 70 deg !!!!!!!
+    ### /zfs/helios/filer1/idayan/tobeaveraged101102.txt 540540
+    #/home/idayan/202012calcdurat.txt
+    LINE=$(sed -n "$N"p /home/idayan/202012calcdurat.txt)
+    #LINE=$(sed -n "$N"p /zfs/helios/filer1/idayan/tobeaveraged101102.txt)
+    #LINE=$(sed -n "$N"p ~/REMAINIGDATES-GPs10110204up.txt) ###LINE=$(sed -n "$N"p ~/testsearchGPlist.txt)
+    #LINE=$(sed -n "$N"p ~/imgsin60.txt)
+    #LINE=$(sed -n "$N"p ~/ALL202007Dates2.txt)
+    echo $LINE
+    $HOME/A12_pipeline/helios_pipeline/A12_pipelinearray.sh $LINE
+    #$HOME/A12_pipeline/helios_pipeline/A12_pipelinearray.sh `sed $SLURM_ARRAY_TASK_ID'q;d' $OBSSLICEFILE` 
+    #python /home/idayan/dataframe2/IMAGES-IN-TARGET/IN70-loccheck.py $LINE
+    
+    #python /home/idayan/dataframe2/IMAGES-IN-TARGET/fileshavetarget-parallel.py $LINE
+    #python /home/idayan/dataframe2/GP-SEARCH/GPsearch-un202007.py $LINE
+    #python /home/idayan/dataframe2/Cal-All-automate.py --fitsfile=$LINE
+    
+    #python /home/idayan/dataframe2/testconfautomate.py --fitsfile=$LINE
+    #echo "processing done"
+    #echo $(wc -l ~/ALL202007Dates2.txt)
+    
+done
