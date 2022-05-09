@@ -5,7 +5,8 @@
 #SBATCH --cpus-per-task 12
 #SBATCH --mem 20G
 #SBATCH --time 12:00:00
-#SBATCH --array=1-128%32
+#SBATCH --array=1-2528%32
+## ## #SBATCH --array=1-128%32
 
 OBSSLICEFILE=$1
 
