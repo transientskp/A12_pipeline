@@ -37,8 +37,9 @@ mkdir /hddstore/idayan
 mkdir "/hddstore/idayan/"$SB"-"$SLICE
 cd  "/hddstore/idayan/"$SB"-"$SLICE
 
-# modify 3 !!! it is for 5 hours observation of 202012 in filer 0
-singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer0/mkuiack1/:/opt/Archive/  \
+# modify 3 !!! it is for 5 hours observation of 202012 in filer 0 
+#return filer 1 for 202006071603
+singularity exec -B /hddstore/idayan/:/opt/Data/,/zfs/helios/filer1/mkuiack1/:/opt/Archive/  \
         $HOME/lofar-pipeline.simg  $HOME/A12_pipeline/helios_pipeline/run_trim_a2m.sh \
         $SB $START $END $INPUT
 
