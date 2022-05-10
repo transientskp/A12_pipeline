@@ -34,7 +34,8 @@ echo $numline/150
 #echo "3) division is"
 #echo (($numline/150))
 
-numlinediv= $(($numline/150 + $numline%150 >0))
+numlinediv= $(echo $(($numline/150 + $numline%150 >0)))
+#numlinediv= $(($numline/150 + $numline%150 >0))
 #numlinediv= $((($numline/150) + ($numline%150 >0)))
 echo "numlinediv is:"
 echo $numlinediv
