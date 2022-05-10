@@ -26,7 +26,17 @@
 OBSSLICEFILE=$1
 
 numline=$(wc -l $OBSSLICEFILE)
-numlinediv= $((($numline/150) + ($numline%150 >0)))
+echo "1) numline is"
+echo $numline
+echo "2) division is"
+echo ($numline/150)
+echo "3) division is"
+echo (($numline/150))
+
+numlinediv= $(( (($numline/150)) + (($numline%150) >0)) ))
+#numlinediv= $((($numline/150) + ($numline%150 >0)))
+echo "numlinediv is:"
+echo $numlinediv
 
 #$(((100 / 3) + (100 % 3 > 0)))
 
