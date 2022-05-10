@@ -6,7 +6,7 @@
 #SBATCH --mem 25G
 #SBATCH --time 240:00:00
 #SBATCH --array=1-150%32
-SBATCH -w helios-cn[003-008]
+#SBATCH -w helios-cn[003-008]
 ### ## #SBATCH --array=1-128%32
 #### ## SBATCH --exclude=helios-cn[013-020]
 ##### #### ### #SBATCH --w helios-cn005,helios-cn006,helios-cn007,helios-cn018,helios-cn019
