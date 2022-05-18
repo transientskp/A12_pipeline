@@ -25,8 +25,8 @@
 ######################################################
 
 OBSSLICEFILE=$1
-
-numline=$(wc -l ~/_202012032122_JOBS.txt | awk '{print $1}') 
+numline=$(wc -l $OBSSLICEFILE | awk '{print $1}') 
+#numline=$(wc -l ~/_202012032122_JOBS.txt | awk '{print $1}') 
 #numline=$(wc -l $OBSSLICEFILE)
 echo "1) numline is"
 echo $numline
