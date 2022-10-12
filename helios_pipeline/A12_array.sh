@@ -2,8 +2,8 @@
 
 #SBATCH -N 1
 #SBATCH --ntasks-per-node 1
-#SBATCH --cpus-per-task 12
-#SBATCH --mem 25G
+#SBATCH --cpus-per-task 3
+#SBATCH --mem 5G
 #SBATCH --time 240:00:00
 #SBATCH --array=1-150%32
 ## ###SBATCH -w helios-cn[003-011]
@@ -12,6 +12,8 @@
 ##### #### ### #SBATCH --w helios-cn005,helios-cn006,helios-cn007,helios-cn018,helios-cn019
 #### ####SBATCH --exclude=helios-cn[013-020]
 ##### ### SBATCH -w helios-cn018,helios-cn39
+######## ######## #############################  SBATCH --cpus-per-task 12 # cpu efficiency was 21.82%
+######### ######## ############################  SBATCH --mem 25G # memory efficiency was 18 percent
 
 
 #OBSSLICEFILE=$1
